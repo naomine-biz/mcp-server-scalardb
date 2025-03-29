@@ -16,10 +16,12 @@ ScalarDB Cluster 用の Model Context Protocol (MCP) サーバーです。この
 
 ## インストール
 
+詳細なインストール手順については、[INSTALL.md](INSTALL.md)を参照してください。
+
 必要な依存関係をインストールします：
 
 ```bash
-pip install -r requirements.txt
+pip install -r src/requirements.txt
 ```
 
 ## 使用方法
@@ -37,13 +39,13 @@ export SCALARDB_CLUSTER_ENDPOINT="localhost:60053"
 開発モードでサーバーを起動するには：
 
 ```bash
-python main.py
+python src/main.py
 ```
 
 または、提供されているスクリプトを使用：
 
 ```bash
-./start_server.sh
+./src/start_server.sh
 ```
 
 ### Claude Desktop との統合
@@ -55,7 +57,7 @@ Claude Desktop でこのサーバーを使用するには、Claude Desktop の�
 MCP Inspector を使用してサーバーをテストするには：
 
 ```bash
-mcp dev main.py
+mcp dev src/main.py
 ```
 
 ## 実装の詳細

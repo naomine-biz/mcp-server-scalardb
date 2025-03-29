@@ -16,8 +16,8 @@
 まず、リポジトリをローカルマシンにクローンします：
 
 ```bash
-git clone https://github.com/your-username/scalardb-cluster-mcp-server.git
-cd scalardb-cluster-mcp-server
+git clone https://github.com/scalar-labs/mcp-server-scalardb.git
+cd mcp-server-scalardb
 ```
 
 ### 2. Python 依存関係のインストール
@@ -25,7 +25,7 @@ cd scalardb-cluster-mcp-server
 必要なPythonパッケージをインストールします：
 
 ```bash
-pip install -r requirements.txt
+pip install -r src/requirements.txt
 ```
 
 ### 3. npx パッケージとしてインストール
@@ -37,7 +37,7 @@ pip install -r requirements.txt
 npm init -y
 
 # bin フィールドを追加して、start_server.shを実行可能にする
-npm pkg set bin.scalardb-cluster-mcp="./start_server.sh"
+npm pkg set bin.scalardb-cluster-mcp="./src/start_server.sh"
 
 # パッケージをグローバルにインストール
 npm install -g .
@@ -95,7 +95,7 @@ Claude Desktopの設定ファイル（通常は`~/Library/Application Support/Cl
 `start_server.sh`の実行権限がない場合は、以下のコマンドで権限を付与します：
 
 ```bash
-chmod +x start_server.sh
+chmod +x src/start_server.sh
 ```
 
 ### 接続エラー
