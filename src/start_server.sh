@@ -32,6 +32,9 @@ else
     exit 1
 fi
 
+# スクリプトのディレクトリに移動
+cd "$SCRIPT_DIR"
+
 # 必要なパッケージをインストール
 echo "必要なパッケージをインストールしています..."
 pip install -r requirements.txt
@@ -40,9 +43,6 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 echo "パッケージのインストールが完了しました。"
-
-# スクリプトのディレクトリに移動
-cd "$SCRIPT_DIR"
 
 # Pythonスクリプトを実行
 python main.py
