@@ -111,7 +111,18 @@ mcp dev src/main.py
 
 ## 依存関係
 
+### 主要な依存関係
 - Python 3.8 以上
 - MCP SDK 1.5.0 以上
 - Uvicorn 0.27.0 以上
 - Protobuf 5.29.3
+- gRPC 1.60.0 以上
+- gRPC Tools 1.60.0 以上
+- uv 0.6.9 以上（高速なPythonパッケージマネージャー）
+
+### MCP SDKの依存関係（自動的にインストールされます）
+- anyio 4.5 以上
+- httpx 0.27 以上
+- pydantic 2.7.2 以上
+- starlette 0.27 以上
+- その他の依存関係は`mcp`パッケージをインストールすると自動的に解決されます
