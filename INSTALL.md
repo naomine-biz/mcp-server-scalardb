@@ -63,11 +63,11 @@ npm init -y
 # bin フィールドを追加して、start_server.shを実行可能にする
 npm pkg set bin.scalardb-cluster-mcp="./src/start_server.sh"
 
-# パッケージをグローバルにインストール
-npm install -g .
+# パッケージをローカルにインストール
+npm install
 ```
 
-これにより、`scalardb-cluster-mcp`コマンドがグローバルに利用可能になります。
+これにより、`npx scalardb-cluster-mcp`コマンドを使用してローカルでサーバーを起動できるようになります。
 
 ## 使用方法
 
@@ -111,12 +111,6 @@ python src/main.py
 
 ```bash
 npx scalardb-cluster-mcp
-```
-
-または、グローバルにインストールした場合：
-
-```bash
-scalardb-cluster-mcp
 ```
 
 注意: npxパッケージを使用する場合も、内部的にstart_server.shスクリプトが実行され、自動的に仮想環境が使用されます。
@@ -163,5 +157,6 @@ ScalarDB Clusterに接続できない場合は、以下を確認してくださ�
 パッケージをアンインストールするには：
 
 ```bash
-npm uninstall -g scalardb-cluster-mcp
+# プロジェクトディレクトリで実行
+npm uninstall
 ```
