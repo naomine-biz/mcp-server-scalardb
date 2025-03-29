@@ -10,23 +10,36 @@ ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 VENV_DIR="$ROOT_DIR/venv"
 
 # 仮想環境が存在するか確認
-if [ -d "$VENV_DIR" ]; then
-    echo "仮想環境を使用します: $VENV_DIR"
-
-    # 仮想環境をアクティベート
-    if [ -f "$VENV_DIR/bin/activate" ]; then
-        # macOS/Linux
-        source "$VENV_DIR/bin/activate"
-    elif [ -f "$VENV_DIR/Scripts/activate" ]; then
-        # Windows（Git Bash等で実行する場合）
-        source "$VENV_DIR/Scripts/activate"
-    else
-        echo "警告: 仮想環境のアクティベーションスクリプトが見つかりません。システムのPythonを使用します。"
+if [ ! -d "$VENV_DIR" ]; then
+    echo "仮想環境が見つかりません。新しく作成します: $VENV_DIR"
+    python -m venv "$VENV_DIR"
+    if [ $? -ne 0 ]; then
+        echo "エラー: 仮想環境の作成に失敗しました。"
+        exit 1
     fi
-else
-    echo "警告: 仮想環境が見つかりません。システムのPythonを使用します。"
-    echo "仮想環境を作成するには: python -m venv $VENV_DIR"
+    echo "仮想環境を作成しました: $VENV_DIR"
 fi
+
+# 仮想環境をアクティベート
+if [ -f "$VENV_DIR/bin/activate" ]; then
+    # macOS/Linux
+    source "$VENV_DIR/bin/activate"
+elif [ -f "$VENV_DIR/Scripts/activate" ]; then
+    # Windows（Git Bash等で実行する場合）
+    source "$VENV_DIR/Scripts/activate"
+else
+    echo "エラー: 仮想環境のアクティベーションスクリプトが見つかりません。"
+    exit 1
+fi
+
+# 必要なパッケージをインストール
+echo "必要なパッケージをインストールしています..."
+pip install -r requirements.txt
+if [ $? -ne 0 ]; then
+    echo "エラー: パッケージのインストールに失敗しました。"
+    exit 1
+fi
+echo "パッケージのインストールが完了しました。"
 
 # スクリプトのディレクトリに移動
 cd "$SCRIPT_DIR"
