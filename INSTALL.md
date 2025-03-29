@@ -20,13 +20,25 @@ git clone https://github.com/naomine-biz/mcp-server-scalardb.git
 cd mcp-server-scalardb
 ```
 
-### 2. Python 依存関係のインストール
+### 2. Python 仮想環境のセットアップと依存関係のインストール
 
-必要なPythonパッケージをインストールします：
+Python仮想環境を作成し、必要なパッケージをインストールします：
 
 ```bash
+# 仮想環境の作成
+python -m venv venv
+
+# 仮想環境のアクティベート
+# macOS/Linux:
+source venv/bin/activate
+# Windows:
+# venv\Scripts\activate
+
+# 依存関係のインストール
 pip install -r src/requirements.txt
 ```
+
+仮想環境を使用することで、システム全体のPython環境に影響を与えずに依存関係をインストールできます。
 
 ### 3. npx パッケージとしてインストール
 
@@ -57,6 +69,32 @@ export SCALARDB_CLUSTER_ENDPOINT="localhost:60053"
 
 ### サーバーの起動
 
+#### 仮想環境を使用する方法（推奨）
+
+サーバーを起動するには以下の方法があります：
+
+1. **start_server.shスクリプトを使用（最も簡単）**:
+
+```bash
+# スクリプトは自動的に仮想環境を検出してアクティベートします
+./src/start_server.sh
+```
+
+2. **手動で仮想環境をアクティベートしてからPythonスクリプトを実行**:
+
+```bash
+# 仮想環境のアクティベート
+# macOS/Linux:
+source venv/bin/activate
+# Windows:
+# venv\Scripts\activate
+
+# Pythonスクリプトを直接実行
+python src/main.py
+```
+
+#### npxパッケージを使用する方法
+
 インストール後、以下のコマンドでサーバーを起動できます：
 
 ```bash
@@ -68,6 +106,8 @@ npx scalardb-cluster-mcp
 ```bash
 scalardb-cluster-mcp
 ```
+
+注意: npxパッケージを使用する場合も、内部的にstart_server.shスクリプトが実行され、自動的に仮想環境が使用されます。
 
 ### Claude Desktop との統合
 
