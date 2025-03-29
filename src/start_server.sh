@@ -2,12 +2,17 @@
 
 # Start the ScalarDB Cluster MCP server
 
-# スクリプトのディレクトリを取得
-SCRIPT_DIR="$(dirname "$0")"
+# スクリプトのディレクトリを取得（シンボリックリンクを考慮）
+SCRIPT_DIR="$(cd "$(dirname "$(readlink -f "$0" || echo "$0")")" && pwd)"
 # リポジトリのルートディレクトリを取得（スクリプトは src/ ディレクトリにある）
 ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 # 仮想環境のパス
 VENV_DIR="$ROOT_DIR/venv"
+# requirements.txtのパス
+REQUIREMENTS_PATH="$SCRIPT_DIR/requirements.txt"
+
+echo "スクリプトディレクトリ: $SCRIPT_DIR"
+echo "requirements.txtのパス: $REQUIREMENTS_PATH"
 
 # 仮想環境が存在するか確認
 if [ ! -d "$VENV_DIR" ]; then
@@ -35,9 +40,15 @@ fi
 # スクリプトのディレクトリに移動
 cd "$SCRIPT_DIR"
 
+# requirements.txtファイルの存在確認
+if [ ! -f "$REQUIREMENTS_PATH" ]; then
+    echo "エラー: requirements.txtファイルが見つかりません: $REQUIREMENTS_PATH"
+    exit 1
+fi
+
 # 必要なパッケージをインストール
 echo "必要なパッケージをインストールしています..."
-pip install -r requirements.txt
+pip install -r "$REQUIREMENTS_PATH"
 if [ $? -ne 0 ]; then
     echo "エラー: パッケージのインストールに失敗しました。"
     exit 1
@@ -45,4 +56,4 @@ fi
 echo "パッケージのインストールが完了しました。"
 
 # Pythonスクリプトを実行
-python main.py
+python "$SCRIPT_DIR/main.py"

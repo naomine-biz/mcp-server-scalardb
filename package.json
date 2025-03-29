@@ -1,0 +1,23 @@
+{
+  "name": "mcp-server-scalardb",
+  "version": "1.0.0",
+  "description": "ScalarDB Cluster 用の Model Context Protocol (MCP) サーバーです。このサーバーは、ScalarDB Cluster との対話を可能にするツールとリソースを提供します。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/naomine-biz/mcp-server-scalardb.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/naomine-biz/mcp-server-scalardb/issues"
+  },
+  "homepage": "https://github.com/naomine-biz/mcp-server-scalardb#readme",
+  "bin": {
+    "scalardb-cluster-mcp": "./src/start_server.sh"
+  }
+}
