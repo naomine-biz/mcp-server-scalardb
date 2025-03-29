@@ -16,7 +16,7 @@
 まず、リポジトリをローカルマシンにクローンします：
 
 ```bash
-git clone https://github.com/scalar-labs/mcp-server-scalardb.git
+git clone https://github.com/naomine-biz/mcp-server-scalardb.git
 cd mcp-server-scalardb
 ```
 
